@@ -1,13 +1,9 @@
+using APBD05.Intercaces;
 using APBD05.Properties;
 
 namespace APBD05;
 
-public interface IMockDb
-{
-    public ICollection<Student> GetAll();
-}
-
-public class MockDb : IMockDb
+public class MockDb : IMockDb<Animal>
 {
     private ICollection<Animal> _animals = new List<Animal>()
     {
@@ -24,8 +20,8 @@ public class MockDb : IMockDb
     };
 
 
-    public ICollection<Student> GetAll()
+    public ICollection<Animal> GetAll()
     {
-        
+        return _animals;
     }
 }

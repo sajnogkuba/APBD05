@@ -8,6 +8,5 @@ public enum AnimalCategory
     GuineaPig,
     Bird,
     Horse,
-    Cow,
-    Other
+    Cow
 }
