@@ -10,6 +10,7 @@ public enum Color
     Beige,
     Red,
     Blue,
+    Yellow,
     Green,
     Spotted,
     Striped
