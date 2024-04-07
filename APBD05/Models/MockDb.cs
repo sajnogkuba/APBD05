@@ -1,11 +1,11 @@
-using APBD05.Intercaces;
+using APBD05.Interfaces;
 using APBD05.Properties;
 
 namespace APBD05;
 
 public class MockDb : IMockDb<Animal>
 {
-    private ICollection<Animal> _animals = new List<Animal>()
+    private ICollection<Animal?> _animals = new List<Animal?>()
     {
         {new(1, "Max", AnimalCategory.Dog, 15.5, Color.Brown)},
         {new(2, "Bella", AnimalCategory.Dog, 20.3, Color.Black)},
@@ -20,8 +20,13 @@ public class MockDb : IMockDb<Animal>
     };
 
 
-    public ICollection<Animal> GetAll()
+    public ICollection<Animal?> GetAll()
     {
         return _animals;
+    }
+
+    public Animal? GetById(int id)
+    {
+        return this._animals.FirstOrDefault(a => a != null && a.Id == id);
     }
 }
