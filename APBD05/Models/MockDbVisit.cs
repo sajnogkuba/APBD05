@@ -4,7 +4,7 @@ namespace APBD05.Models;
 
 public class MockDbVisit : IMockDbVisit
 {
-    private static IMockDbAnimals _mockDbAnimals = new MockDbAnimal();
+    public static IMockDbAnimals _mockDbAnimals = new MockDbAnimal();
     private ICollection<Visit> _visits = new List<Visit>()
     {
         new(new DateTime(2023, 12, 23), _mockDbAnimals.GetById(1), "descrition 1", 200),
