@@ -1,6 +1,5 @@
 using APBD05.Interfaces;
 using APBD05.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APBD05.Controllers;
@@ -8,12 +7,10 @@ namespace APBD05.Controllers;
 [Route("/animals/[controller]")]
 public class AnimalsController(IMockDb<Animal> mockDb) : ControllerBase
 {
-    private IMockDb<Animal> _mockDb = mockDb;
-
     [HttpGet]
     public IActionResult GetAll()
     {
-        return Ok(_mockDb.GetAll());
+        return Ok(mockDb.GetAll());
     }
     
     [HttpGet("{id:int}")]
@@ -31,14 +28,31 @@ public class AnimalsController(IMockDb<Animal> mockDb) : ControllerBase
     [HttpPost]
     public IActionResult Add(Animal animal)
     {
-        _mockDb.Add(animal);
+        mockDb.Add(animal);
         return Created();
     }
     
     [HttpPut]
     public IActionResult Edit(int id, Animal animal)
     {
-        _mockDb.Edit(id, animal);
+        if (mockDb.GetById(id) == null)
+        {
+            return NotFound();
+        }
+        mockDb.Edit(id, animal);
+        return NoContent();
+
+
+    }
+    
+    [HttpDelete]
+    public IActionResult Delete(int id)
+    {
+        if (mockDb.GetById(id) == null)
+        {
+            return NotFound();
+        }
+        mockDb.Delete(id);
         return NoContent();
     }
 }
