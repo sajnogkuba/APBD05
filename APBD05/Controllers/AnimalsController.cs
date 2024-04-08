@@ -35,4 +35,10 @@ public class AnimalsController(IMockDb<Animal> mockDb) : ControllerBase
         return Created();
     }
     
+    [HttpPut]
+    public IActionResult Edit(int id, Animal animal)
+    {
+        _mockDb.Edit(id, animal);
+        return NoContent();
+    }
 }

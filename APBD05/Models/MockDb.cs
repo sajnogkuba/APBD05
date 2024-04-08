@@ -34,4 +34,13 @@ public class MockDb : IMockDb<Animal>
     {
         _animals.Add(animal);
     }
+
+    public void Edit(int id, Animal animal)
+    {
+        var animalToChange = this.GetById(id);
+        animalToChange.Name = animal.Name;
+        animalToChange.Category = animal.Category;
+        animalToChange.Mass = animal.Mass;
+        animalToChange.Color = animal.Color;
+    }
 }
