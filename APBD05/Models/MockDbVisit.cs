@@ -5,7 +5,7 @@ namespace APBD05.Models;
 public class MockDbVisit : IMockDbVisit
 {
     private static IMockDbAnimals _mockDbAnimals = new MockDbAnimal();
-    private ICollection<Visit> _animals = new List<Visit>()
+    private ICollection<Visit> _visits = new List<Visit>()
     {
         new(new DateTime(2023, 12, 23), _mockDbAnimals.GetById(1), "descrition 1", 200),
         new(new DateTime(2023, 03, 13), _mockDbAnimals.GetById(1), "descrition 2", 250),
@@ -17,11 +17,11 @@ public class MockDbVisit : IMockDbVisit
 
     public List<Visit> GetByAnimal(Animal animal)
     {
-        throw new NotImplementedException();
+        return _visits.Where(visit => visit.Animal!.Equals(animal)).ToList();
     }
 
     public void Add(Visit visit)
     {
-        throw new NotImplementedException();
+        _visits.Add(visit);
     }
 }
