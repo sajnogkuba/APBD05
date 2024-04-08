@@ -1,3 +1,5 @@
+using APBD05.Models;
+
 namespace APBD05;
 
 public class Visit

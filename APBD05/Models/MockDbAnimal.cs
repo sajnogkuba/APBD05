@@ -1,11 +1,10 @@
 using APBD05.Interfaces;
-using APBD05.Models;
 
-namespace APBD05;
+namespace APBD05.Models;
 
 public class MockDb : IMockDb<Animal>
 {
-    private ICollection<Animal> _animals = new List<Animal>()
+    private readonly ICollection<Animal> _animals = new List<Animal>()
     {
         new(1, "Max", AnimalCategory.Dog, 15.5, Color.Brown),
         new(2, "Bella", AnimalCategory.Dog, 20.3, Color.Black),
@@ -18,16 +17,15 @@ public class MockDb : IMockDb<Animal>
         new(9, "Sky", AnimalCategory.Bird, 0.12, Color.Blue),
         new(10, "Daisy", AnimalCategory.Cow, 675, Color.Spotted),
     };
-
-
+    
     public ICollection<Animal?> GetAll()
     {
-        return _animals;
+        return _animals!;
     }
 
     public Animal? GetById(int id)
     {
-        return this._animals.FirstOrDefault(a => a != null && a.Id == id);
+        return _animals.FirstOrDefault(a => a.Id == id);
     }
 
     public void Add(Animal animal)
@@ -37,10 +35,16 @@ public class MockDb : IMockDb<Animal>
 
     public void Edit(int id, Animal animal)
     {
-        var animalToChange = this.GetById(id);
-        animalToChange.Name = animal.Name;
+        var animalToChange = GetById(id);
+        animalToChange!.Name = animal.Name;
         animalToChange.Category = animal.Category;
         animalToChange.Mass = animal.Mass;
         animalToChange.Color = animal.Color;
+    }
+
+    public void Delete(int id)
+    {
+        var animal = GetById(id);
+        _animals.Remove(animal!);
     }
 }
