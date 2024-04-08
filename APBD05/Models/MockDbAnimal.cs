@@ -2,7 +2,7 @@ using APBD05.Interfaces;
 
 namespace APBD05.Models;
 
-public class MockDbAnimal : IMockDb<Animal>
+public class MockDbAnimal : IMockDbAnimals
 {
     private readonly ICollection<Animal> _animals = new List<Animal>()
     {

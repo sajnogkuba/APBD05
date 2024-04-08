@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IMockDb<Animal>, MockDbAnimal>();
+builder.Services.AddSingleton<IMockDbAnimals, MockDbAnimal>();
+builder.Services.AddSingleton<IMockDbVisit, MockDbVisit>();
 
 var app = builder.Build();
 
