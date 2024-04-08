@@ -1,4 +1,5 @@
 using APBD05.Interfaces;
+using APBD05.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,10 +24,15 @@ public class AnimalsController(IMockDb<Animal> mockDb) : ControllerBase
         {
             return NotFound();
         }
-        else
-        {
-            return Ok(animal);
-        }
+
+        return Ok(animal);
+    }
+    
+    [HttpPost]
+    public IActionResult Add(Animal animal)
+    {
+        _mockDb.Add(animal);
+        return Created();
     }
     
 }

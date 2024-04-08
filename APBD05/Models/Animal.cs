@@ -1,6 +1,4 @@
-using APBD05.Properties;
-
-namespace APBD05;
+namespace APBD05.Models;
 
 public class Animal(int id, string name, AnimalCategory category, double mass, Color color)
 {

@@ -1,4 +1,4 @@
-namespace APBD05.Properties;
+namespace APBD05.Models;
 
 public enum AnimalCategory
 {
@@ -9,4 +9,6 @@ public enum AnimalCategory
     Bird,
     Horse,
     Cow
+    
+    
 }
